@@ -150,9 +150,9 @@ function mobileSliderPrices(){
     
 // КНОПКИ ПОКАЗАТЬ ВСЕ ДЛЯ 1 SWIPER'a
 
-    let btnSwiperBrands = document.querySelector('.swp-brands__btn');
-    let imgSwiperBrands = document.querySelector('.btn__img-brands');    
-    let wrapperSwiperBrands = document.querySelector('.swiper-wrapper_brands');       
+    const btnSwiperBrands = document.querySelector('.swp-brands__btn');
+    const imgSwiperBrands = document.querySelector('.btn__img-brands');    
+    const wrapperSwiperBrands = document.querySelector('.swiper-wrapper_brands');       
   
 
     btnSwiperBrands.addEventListener('click', function(evt){ 
@@ -175,9 +175,9 @@ function mobileSliderPrices(){
     })
 // КНОПКИ ПОКАЗАТЬ ВСЕ ДЛЯ 2 SWIPER'a
 
-let btnSwiperRepair = document.querySelector('.swp-repair__btn');
-let imgSwiperRepair = document.querySelector('.btn__img-repair');    
-let wrapperSwiperRepair = document.querySelector('.swiper-wrapper_repair');       
+const btnSwiperRepair = document.querySelector('.swp-repair__btn');
+const imgSwiperRepair = document.querySelector('.btn__img-repair');    
+const wrapperSwiperRepair = document.querySelector('.swiper-wrapper_repair');       
 
 
 btnSwiperRepair.addEventListener('click', function(evt){ 
@@ -191,7 +191,7 @@ btnSwiperRepair.addEventListener('click', function(evt){
   
   }else{
 
-    wrapperSwiperRepair.classList.add('over');
+  wrapperSwiperRepair.classList.add('over');
   document.querySelector('.btn__text-repair').textContent="Скрыть";
   imgSwiperRepair.classList.add('arrows_rotate');
   imgSwiperRepair.classList.remove('arrows_reverse');
@@ -202,28 +202,32 @@ btnSwiperRepair.addEventListener('click', function(evt){
 
 
 const burgerBtn = document.querySelector('.burger-btn');
-let asideMenu = document.querySelector('.aside-menu');
-let burgerX = document.querySelector('.burgerX');
-let blurOver = document.querySelector('.blur');
+const asideMenu = document.querySelector('.aside-menu');
+const burgerX = document.querySelector('.burgerX');
+const blurOver = document.querySelector('.blur');
+const body = document.querySelector('.body');
 
 
- 
-if (window.innerWidth >= 1439){
-  asideMenu.classList.remove('open-aside');
-  asideMenu.classList.add('aside');
+blurOver.addEventListener('click', () => {
+  body.style.overflow = 'visible';
+})
 
-}
 
 burgerBtn.addEventListener('click', function(evt){
   evt.preventDefault();
+ 
   blurOver.style.zIndex = 11;
   if (asideMenu.classList.contains('open-aside')){
     asideMenu.classList.remove('open-aside');
     asideMenu.classList.add('aside');
+    body.style.overflow = 'visible';
+    
+
   }else{
     asideMenu.classList.add('open-aside');
     burgerX.style.display = 'block';
     asideMenu.classList.remove('aside');
+    body.style.overflow = 'hidden';
   }
 })
 
@@ -231,8 +235,10 @@ burgerX.addEventListener('click', function(evt){
   evt.preventDefault();
   blurOver.style.zIndex = -1;
   if (asideMenu.classList.contains('open-aside')){
+    body.style.overflow = 'visible';
     asideMenu.classList.remove('open-aside');
     asideMenu.classList.add('aside');
+    
 }else{
   asideMenu.classList.add('open-aside');
   burgerX.style.display = 'block';
@@ -251,7 +257,7 @@ burgerX.addEventListener('click', function(evt){
 
 const feedBackBtn = document.querySelector('.data__feedback');
 const burgerCloseBtn = document.querySelector('.burger-close');
-let asideFeedBack = document.querySelector('.aside-feedback');
+const asideFeedBack = document.querySelector('.aside-feedback');
 
 feedBackBtn.addEventListener('click', function() {
 
@@ -279,7 +285,7 @@ burgerCloseBtn.addEventListener('click', function(){
 // CALLBACK BUTTON
 const burgerCallClose = document.querySelector('.burger-call-close')
 const callBackBtn = document.querySelector('.data__callback');
-let asideCallBack = document.querySelector('.aside-callback');
+const asideCallBack = document.querySelector('.aside-callback');
 
 callBackBtn.addEventListener('click', function() {
 
@@ -311,6 +317,7 @@ document.addEventListener('keydown', function(evt){
      asideMenu.classList.add('aside'); 
      asideFeedBack.classList.remove('aside-feedback--open'); 
      asideCallBack.classList.remove('aside-callback--open'); 
+     body.style.overflow = 'visible';
    }  
  })
 
@@ -329,7 +336,7 @@ document.addEventListener('keydown', function(evt){
 const readBtn = document.querySelector('.read__btn');
 const readBtnText = document.querySelector('.btn__read-text');
 const readBtnImg = document.querySelector('.btn__open-img');
-let readText = document.querySelector('.read__text')
+const readText = document.querySelector('.read__text')
 
 readBtn.addEventListener('click', function(evt){
   evt.preventDefault();
@@ -348,6 +355,13 @@ readBtn.addEventListener('click', function(evt){
   }
   
 })
+
+if (window.innerWidth >= 1439){
+  asideMenu.classList.remove('open-aside');
+  asideMenu.classList.add('aside');
+  blurOver.style.zIndex = -1; 
+
+}
 
 
   
